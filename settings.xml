@@ -4,6 +4,11 @@
       <id>nexus-id</id>
       <username>${NEXUS_USER}</username>
       <password>${NEXUS_PASSWORD}</password>
+</server> 
+     <server>
+      <id>nexus-snapshot</id>
+      <username>${NEXUS_USER}</username>
+      <password>${NEXUS_PASSWORD}</password>
 </server>
 </servers>
 </settings>
