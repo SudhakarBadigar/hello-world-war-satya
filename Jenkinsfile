@@ -42,7 +42,8 @@ pipeline {
     }
     stage ("nexus war file push") {
       steps {
-        script {
+        script { 
+          withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
            sh "mvn deploy"
         }
       }
