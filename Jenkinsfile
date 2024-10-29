@@ -1,7 +1,7 @@
 //add 
 pipeline { 
  agent { label "slave-1"}
-  agent any
+  //agent any
   stages{ 
     stage('maven compile'){ 
     steps{ 
