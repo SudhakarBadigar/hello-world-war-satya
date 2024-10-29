@@ -1,6 +1,6 @@
 //add 
 pipeline { 
- //agent { label "docker-slave"}
+ agent { label "slave-1"}
   agent any
   stages{ 
     stage('maven compile'){ 
@@ -31,10 +31,10 @@ pipeline {
       }
     }
   } 
-  /*stage ("sonar analysis") {
+  stage ("sonar analysis") {
       steps {
         script {
-          withSonarQubeEnv(SONARQUBE_SERVER) {
+          withSonarQubeEnv('SONARQUBE_SERVER') {
               sh "mvn sonar:sonar -Dsonar.projectKey=java-hello"
           }
         }
@@ -46,11 +46,11 @@ pipeline {
            sh "mvn deploy"
         }
       }
-    }*/
+    }
     stage ("docker build") {
     steps{ 
       script{ 
-        sh "docker build -t skreddy6009/devops:${BUILD_NUMBER} ." 
+        sh "docker build -t sudhakar24/devops:${BUILD_NUMBER} ." 
       }
     }
   } 
@@ -59,7 +59,7 @@ pipeline {
       script{ 
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin" 
-                        sh "docker push skreddy6009/devops:${BUILD_NUMBER}"
+                        sh "docker push sudhakar24/devops:${BUILD_NUMBER}"
        }
       }
     }
@@ -77,7 +77,7 @@ stage('Deploy') {
                 echo "Deploy"  
                //sh "docker stop satya3"
                //sh "docker rm satya3"
-                sh "docker run -itd --name satya3 -p 9000:8080 skreddy6009/devops:${BUILD_NUMBER}" 
+                sh "docker run -itd --name satya3 -p 9000:8080 sudhakar24/devops:${BUILD_NUMBER}" 
                 
         } 
       } 
