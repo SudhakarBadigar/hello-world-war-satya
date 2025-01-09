@@ -8,6 +8,7 @@
 	<name>Hello World Web Application Repository</name>
 	<description>Simplest possible Java Webapp</description>
 	<!--comment done on 8-1-25-->
+	<!--for poll scm builds the job when there is a src code change-->
 
 	<build>
 		<plugins>
